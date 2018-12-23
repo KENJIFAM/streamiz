@@ -1,17 +1,17 @@
 import { Action } from "../actions";
 import { ActionTypes } from "../actions/types";
 
-interface State {
+interface AuthState {
   isSignedIn: boolean,
   userId: string
 }
 
-const INITIAL_STATE: State = {
+const INITIAL_STATE: AuthState = {
   isSignedIn: null,
   userId: null
 };
 
-export default (state: State = INITIAL_STATE, action: Action) => {
+export default (state: AuthState = INITIAL_STATE, action: Action): AuthState => {
   switch (action.type) {
     case ActionTypes.SIGN_IN:
       return {...state, isSignedIn: true, userId: action.payload};

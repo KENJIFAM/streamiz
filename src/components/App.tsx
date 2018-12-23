@@ -7,7 +7,7 @@ import StreamDelete from './streams/StreamDelete';
 import StreamShow from './streams/StreamShow';
 import Header from './Header';
 
-const App = () => {
+const App: React.FunctionComponent = () => {
   return (
     <div className='ui container'>
       <BrowserRouter>

@@ -1,16 +1,28 @@
 import * as React from 'react';
-import { reduxForm, Field, InjectedFormProps } from 'redux-form';
+import { 
+  reduxForm, 
+  Field, 
+  InjectedFormProps, 
+  FormErrors, 
+  WrappedFieldProps, 
+  WrappedFieldMetaProps 
+} from 'redux-form';
 
-interface PropsStreamCreate extends InjectedFormProps {
+interface PropsStreamCreate {
 
 }
 
-interface StateStreamCreate {
-
+interface FormData {
+  title: string,
+  description: string
 }
 
-class StreamCreate extends React.Component<PropsStreamCreate, StateStreamCreate> {
-  renderError({ error, touched }) {
+interface FieldProps {
+  label: string
+}
+
+class StreamCreate extends React.Component<InjectedFormProps<FormData> & PropsStreamCreate, {}> {
+  renderError({ error, touched }: WrappedFieldMetaProps) {
     if (touched && error) {
       return (
         <div className='ui error message'>
@@ -20,8 +32,8 @@ class StreamCreate extends React.Component<PropsStreamCreate, StateStreamCreate>
     }
   }
 
-  renderInput = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+  renderInput = ({ input, label, meta }: WrappedFieldProps & FieldProps) => {
+    const className: string = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       <div className={className}>
         <label>{label}</label>
@@ -31,9 +43,8 @@ class StreamCreate extends React.Component<PropsStreamCreate, StateStreamCreate>
     );
   }
 
-  onSubmit(formValues): void {
+  onSubmit(formValues: FormData): void {
     console.log(formValues);
-    
   }
 
   render() {
@@ -50,8 +61,8 @@ class StreamCreate extends React.Component<PropsStreamCreate, StateStreamCreate>
   }
 }
 
-const validate = formValues => {
-  const errors = {};
+const validate = (formValues: FormData): FormErrors<FormData> => {
+  const errors: FormErrors<FormData> = {};
   if (!formValues.title) {
     errors.title = 'You must enter a title';
   }
@@ -61,7 +72,7 @@ const validate = formValues => {
   return errors;
 }
 
-export default reduxForm({
+export default reduxForm<FormData, PropsStreamCreate>({
   form: 'streamCreate',
   validate
 })(StreamCreate); 

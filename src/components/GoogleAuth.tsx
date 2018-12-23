@@ -1,15 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
-import { State } from '../reducers';
+import { AppState } from '../reducers';
 
 interface GoogleAuthProps {
   signIn(id: string): void,
   signOut(): void,
-  isSignedIn: boolean
-}
-
-interface GoogleAuthState {
   isSignedIn: boolean
 }
 
@@ -27,7 +23,7 @@ interface Auth {
   }
 }
 
-class GoogleAuth extends React.Component<GoogleAuthProps, GoogleAuthState> {
+class GoogleAuth extends React.Component<GoogleAuthProps, {}> {
   auth: Auth;
 
   componentDidMount() {
@@ -87,7 +83,7 @@ class GoogleAuth extends React.Component<GoogleAuthProps, GoogleAuthState> {
   }
 }
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: AppState) => {
   return { isSignedIn: state.auth.isSignedIn };
 };
 

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware, Action, Store } from 'redux';
 
 import App from './components/App';
-import reducers from './reducers';
+import reducers, { AppState } from './reducers';
 
 // @ts-ignore: Property does not exist on type 'Window'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
+const store: Store<AppState, Action> = createStore<AppState, Action, {}, {}>(
   reducers,
   composeEnhancers(applyMiddleware())
 );

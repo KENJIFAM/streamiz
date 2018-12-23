@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
 
-const Header = () => {
+const Header: React.FunctionComponent = () => {
   return (
     <div className='ui secondary pointing menu'>
-      <Link to='/' className='item'>Streamie</Link>
+      <Link to='/' className='item'>Streamiz</Link>
       <div className='right menu'>
         <Link to='/' className='item'>All Streams</Link>
         <GoogleAuth />

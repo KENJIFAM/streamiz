@@ -9,7 +9,7 @@ interface State {
 const INITIAL_STATE: State = {
   isSignedIn: null,
   userId: null
-}
+};
 
 export default (state: State = INITIAL_STATE, action: Action) => {
   switch (action.type) {
@@ -20,4 +20,4 @@ export default (state: State = INITIAL_STATE, action: Action) => {
     default:
       return state;
   }
-}
+};

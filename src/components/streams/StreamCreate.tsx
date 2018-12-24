@@ -7,9 +7,11 @@ import {
   WrappedFieldProps, 
   WrappedFieldMetaProps 
 } from 'redux-form';
+import { connect } from 'react-redux';
+import { createStream } from '../../actions';
 
 interface PropsStreamCreate {
-
+  createStream(formValues: FormData): Promise<void>
 }
 
 interface FormData {
@@ -43,8 +45,8 @@ class StreamCreate extends React.Component<InjectedFormProps<FormData> & PropsSt
     );
   }
 
-  onSubmit(formValues: FormData): void {
-    console.log(formValues);
+  onSubmit = (formValues: FormData): void => {
+    this.props.createStream(formValues);
   }
 
   render() {
@@ -72,7 +74,9 @@ const validate = (formValues: FormData): FormErrors<FormData> => {
   return errors;
 }
 
-export default reduxForm<FormData, PropsStreamCreate>({
+const formWrapped = reduxForm<FormData>({
   form: 'streamCreate',
   validate
-})(StreamCreate); 
+})(StreamCreate);  
+
+export default connect(null, { createStream })(formWrapped);

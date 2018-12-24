@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware, Action, Store } from 'redux';
+import thunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers, { AppState } from './reducers';
@@ -10,7 +11,7 @@ import reducers, { AppState } from './reducers';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store: Store<AppState, Action> = createStore<AppState, Action, {}, {}>(
   reducers,
-  composeEnhancers(applyMiddleware())
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 ReactDOM.render(
@@ -18,4 +19,4 @@ ReactDOM.render(
     <App />
   </Provider>,
   document.querySelector('#root')
-);
+); 

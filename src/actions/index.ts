@@ -29,7 +29,11 @@ export const signOut = (): SignOutAction => {
 
 export const createStream = (formValues: FormData): CreateStreamAction => 
 async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
-  streams.post('/streams', formValues);
+  const response = await streams.post('/streams', formValues);
+  dispatch({
+    type: ActionTypes.CREATE_STREAM,
+    payload: response.data
+  });
 };
 
 export type Action = SignInAction | SignOutAction;

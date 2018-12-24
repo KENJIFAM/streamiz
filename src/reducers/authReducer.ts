@@ -1,5 +1,4 @@
-import { Action } from "../actions";
-import { ActionTypes } from "../actions/types";
+import { ActionTypes, AuthAction } from "../actions/types";
 
 interface AuthState {
   isSignedIn: boolean,
@@ -11,7 +10,7 @@ const INITIAL_STATE: AuthState = {
   userId: null
 };
 
-export default (state: AuthState = INITIAL_STATE, action: Action): AuthState => {
+export default (state: AuthState = INITIAL_STATE, action: AuthAction): AuthState => {
   switch (action.type) {
     case ActionTypes.SIGN_IN:
       return {...state, isSignedIn: true, userId: action.payload};

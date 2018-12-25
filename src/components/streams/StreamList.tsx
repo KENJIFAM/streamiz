@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchStreams } from '../../actions';
 import { AppState } from '../../reducers';
 import { Stream } from '../../model/Stream';
+import { Link } from 'react-router-dom';
 
 interface PropsStreamList {
   fetchStreams(): Promise<void>
@@ -10,7 +11,8 @@ interface PropsStreamList {
 
 interface PropsFromState {
   streams: Stream[],
-  currentUserId: string
+  currentUserId: string,
+  isSignedIn: boolean
 }
 
 class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
@@ -42,11 +44,24 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
     ));
   }
 
+  renderCreate() {
+    if (this.props.isSignedIn) {
+      return (
+        <div>
+          <Link to='/streams/new' className='ui right floated button primary'>
+            Create Stream
+          </Link>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
         <h2>Streams</h2>
         <div className='ui celled list'>{this.renderList()}</div>
+        {this.renderCreate()}
       </div>
     );
   }
@@ -55,7 +70,8 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
 const mapStateToProps = (state: AppState): PropsFromState => {
   return { 
     streams: Object.values(state.streams),
-    currentUserId: state.auth.userId
+    currentUserId: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn
   };
 };
 

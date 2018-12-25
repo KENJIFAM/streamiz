@@ -1,6 +1,8 @@
 import streams from '../apis/streams';
 import { ThunkDispatch } from "redux-thunk";
 import { Stream } from 'stream';
+import { AppState } from '../reducers';
+import history from '../history';
 import { 
   ActionTypes, 
   SignInAction, 
@@ -12,7 +14,6 @@ import {
   EditStreamAction,
   DeleteStreamAction
 } from "./types";
-import { AppState } from '../reducers';
 
 export const signIn = (userId: string): SignInAction => {
   return {
@@ -35,6 +36,7 @@ async (dispatch: ThunkDispatch<{}, {}, CreateStreamAction>, getState: () => AppS
     type: ActionTypes.CREATE_STREAM,
     payload: response.data
   });
+  history.push('/');
 };
 
 export const fetchStreams = (): StreamThunkAction<FetchStreamsAction> =>

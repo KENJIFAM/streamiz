@@ -1,5 +1,6 @@
 export interface Stream {
   id: number,
   title: string,
-  description: string
+  description: string,
+  userId: string
 }

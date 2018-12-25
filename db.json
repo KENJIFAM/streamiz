@@ -4,6 +4,17 @@
       "title": "My Stream",
       "description": "Lorem ipsum dollar",
       "id": 1
+    },
+    {
+      "title": "Second Stream",
+      "description": "Dollar Freahs Ipsjmna",
+      "id": 2
+    },
+    {
+      "title": "Third stream",
+      "description": "Dollar Freahs Ipsjmna",
+      "userId": "109224249376208899720",
+      "id": 3
     }
   ]
 }

@@ -12,6 +12,7 @@ import {
   EditStreamAction,
   DeleteStreamAction
 } from "./types";
+import { AppState } from '../reducers';
 
 export const signIn = (userId: string): SignInAction => {
   return {
@@ -27,8 +28,9 @@ export const signOut = (): SignOutAction => {
 };
 
 export const createStream = (formValues: FormData): StreamThunkAction<CreateStreamAction> =>
-async (dispatch: ThunkDispatch<{}, {}, CreateStreamAction>): Promise<void> => {
-  const response = await streams.post('/streams', formValues);
+async (dispatch: ThunkDispatch<{}, {}, CreateStreamAction>, getState: () => AppState): Promise<void> => {
+  const { userId }: { userId: string } = getState().auth;
+  const response = await streams.post('/streams', { ...formValues, userId });
   dispatch({
     type: ActionTypes.CREATE_STREAM,
     payload: response.data

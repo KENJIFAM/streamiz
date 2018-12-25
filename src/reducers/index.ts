@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import authReducer from './authReducer';
+import authReducer, { AuthState } from './authReducer';
 import { reducer as formReducer, FormStateMap } from 'redux-form';
+import streamReducer, { StreamState } from './streamReducer';
 
 export interface AppState {
-  auth: {
-    isSignedIn: boolean,
-    userId: string
-  },
-  form: FormStateMap
+  auth: AuthState,
+  form: FormStateMap,
+  streams: StreamState
 }
 
 export default combineReducers<AppState>({
   auth: authReducer,
-  form: formReducer
+  form: formReducer,
+  streams: streamReducer
 });

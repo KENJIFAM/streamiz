@@ -1,6 +1,6 @@
-import { Stream } from "stream";
 import { ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
+import { Stream } from "../model/Stream";
 
 export enum ActionTypes {
   SIGN_IN = 'SIGN_IN',
@@ -46,6 +46,9 @@ export interface EditStreamAction {
   payload: Stream
 }
 
-export type StreamAction<T extends AnyAction> = ThunkAction<Promise<void>, {}, {}, T>;
+export type StreamThunkAction<T extends AnyAction> = ThunkAction<Promise<void>, {}, {}, T>;
 
 export type AuthAction = SignInAction | SignOutAction;
+
+export type StreamAction = CreateStreamAction | FetchStreamAction | 
+  FetchStreamsAction | EditStreamAction | DeleteStreamAction;

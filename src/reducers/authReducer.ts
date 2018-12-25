@@ -1,6 +1,6 @@
 import { ActionTypes, AuthAction } from "../actions/types";
 
-interface AuthState {
+export interface AuthState {
   isSignedIn: boolean,
   userId: string
 }

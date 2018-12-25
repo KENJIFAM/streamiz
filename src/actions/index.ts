@@ -5,7 +5,7 @@ import {
   ActionTypes, 
   SignInAction, 
   SignOutAction, 
-  StreamAction, 
+  StreamThunkAction, 
   CreateStreamAction, 
   FetchStreamsAction, 
   FetchStreamAction,
@@ -26,7 +26,7 @@ export const signOut = (): SignOutAction => {
   }
 };
 
-export const createStream = (formValues: FormData): StreamAction<CreateStreamAction> =>
+export const createStream = (formValues: FormData): StreamThunkAction<CreateStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, CreateStreamAction>): Promise<void> => {
   const response = await streams.post('/streams', formValues);
   dispatch({
@@ -35,7 +35,7 @@ async (dispatch: ThunkDispatch<{}, {}, CreateStreamAction>): Promise<void> => {
   });
 };
 
-export const fetchStreams = (): StreamAction<FetchStreamsAction> =>
+export const fetchStreams = (): StreamThunkAction<FetchStreamsAction> =>
 async (dispatch: ThunkDispatch<{}, {}, FetchStreamsAction>): Promise<void> => {
   const response = await streams.get('/streams');
   dispatch({
@@ -44,7 +44,7 @@ async (dispatch: ThunkDispatch<{}, {}, FetchStreamsAction>): Promise<void> => {
   });
 };
 
-export const fetchStream = (id: number): StreamAction<FetchStreamAction> =>
+export const fetchStream = (id: number): StreamThunkAction<FetchStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, FetchStreamAction>): Promise<void> => {
   const response = await streams.get(`/streams/${id}`);
   dispatch({
@@ -53,7 +53,7 @@ async (dispatch: ThunkDispatch<{}, {}, FetchStreamAction>): Promise<void> => {
   });
 };
 
-export const editStream = (id: number, formValues: Stream): StreamAction<EditStreamAction> =>
+export const editStream = (id: number, formValues: Stream): StreamThunkAction<EditStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, EditStreamAction>): Promise<void> => {
   const response = await streams.put(`/streams/${id}`, formValues);
   dispatch({
@@ -62,7 +62,7 @@ async (dispatch: ThunkDispatch<{}, {}, EditStreamAction>): Promise<void> => {
   });
 };
 
-export const deleteStream = (id: number): StreamAction<DeleteStreamAction> =>
+export const deleteStream = (id: number): StreamThunkAction<DeleteStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, DeleteStreamAction>): Promise<void> => {
   await streams.delete(`/streams/${id}`);
   dispatch({

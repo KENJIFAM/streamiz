@@ -6,6 +6,9 @@ import { AppState } from '../reducers';
 interface GoogleAuthProps {
   signIn(id: string): void,
   signOut(): void,
+}
+
+interface PropsFromState {
   isSignedIn: boolean
 }
 
@@ -23,7 +26,7 @@ interface Auth {
   }
 }
 
-class GoogleAuth extends React.Component<GoogleAuthProps, {}> {
+class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
   auth: Auth;
 
   componentDidMount() {
@@ -83,7 +86,7 @@ class GoogleAuth extends React.Component<GoogleAuthProps, {}> {
   }
 }
 
-const mapStateToProps = (state: AppState) => {
+const mapStateToProps = (state: AppState): PropsFromState => {
   return { isSignedIn: state.auth.isSignedIn };
 };
 

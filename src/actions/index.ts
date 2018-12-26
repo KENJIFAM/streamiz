@@ -48,7 +48,7 @@ async (dispatch: ThunkDispatch<{}, {}, FetchStreamsAction>): Promise<void> => {
   });
 };
 
-export const fetchStream = (id: number): StreamThunkAction<FetchStreamAction> =>
+export const fetchStream = (id: string): StreamThunkAction<FetchStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, FetchStreamAction>): Promise<void> => {
   const response = await streams.get(`/streams/${id}`);
   dispatch({
@@ -57,7 +57,7 @@ async (dispatch: ThunkDispatch<{}, {}, FetchStreamAction>): Promise<void> => {
   });
 };
 
-export const editStream = (id: number, formValues: Stream): StreamThunkAction<EditStreamAction> =>
+export const editStream = (id: string, formValues: Stream): StreamThunkAction<EditStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, EditStreamAction>): Promise<void> => {
   const response = await streams.put(`/streams/${id}`, formValues);
   dispatch({
@@ -66,7 +66,7 @@ async (dispatch: ThunkDispatch<{}, {}, EditStreamAction>): Promise<void> => {
   });
 };
 
-export const deleteStream = (id: number): StreamThunkAction<DeleteStreamAction> =>
+export const deleteStream = (id: string): StreamThunkAction<DeleteStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, DeleteStreamAction>): Promise<void> => {
   await streams.delete(`/streams/${id}`);
   dispatch({

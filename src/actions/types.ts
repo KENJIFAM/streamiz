@@ -38,7 +38,7 @@ export interface FetchStreamAction {
 
 export interface DeleteStreamAction {
   type: ActionTypes.DELETE_STREAM,
-  payload: number
+  payload: string
 }
 
 export interface EditStreamAction {

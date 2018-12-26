@@ -2,7 +2,7 @@ import { StreamAction, ActionTypes } from "../actions/types";
 import { Stream } from "../model/Stream";
 
 export interface StreamState {
-  [keys: number]: Stream
+  [keys: string]: Stream
 }
 
 export default (state: StreamState = {}, action: StreamAction): StreamState => {

@@ -1,8 +1,8 @@
 import streams from '../apis/streams';
 import { ThunkDispatch } from "redux-thunk";
-import { Stream } from 'stream';
 import { AppState } from '../reducers';
 import history from '../history';
+import { FormData } from '../components/streams/StreamForm';
 import { 
   ActionTypes, 
   SignInAction, 
@@ -57,13 +57,14 @@ async (dispatch: ThunkDispatch<{}, {}, FetchStreamAction>): Promise<void> => {
   });
 };
 
-export const editStream = (id: string, formValues: Stream): StreamThunkAction<EditStreamAction> =>
+export const editStream = (id: string, formValues: FormData): StreamThunkAction<EditStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, EditStreamAction>): Promise<void> => {
-  const response = await streams.put(`/streams/${id}`, formValues);
+  const response = await streams.patch(`/streams/${id}`, formValues);
   dispatch({
     type: ActionTypes.EDIT_STREAM,
     payload: response.data
   });
+  history.push('/');
 };
 
 export const deleteStream = (id: string): StreamThunkAction<DeleteStreamAction> =>

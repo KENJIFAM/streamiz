@@ -74,4 +74,5 @@ async (dispatch: ThunkDispatch<{}, {}, DeleteStreamAction>): Promise<void> => {
     type: ActionTypes.DELETE_STREAM,
     payload: id
   });
+  history.push('/');
 };

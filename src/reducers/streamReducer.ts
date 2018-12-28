@@ -14,11 +14,10 @@ export default (state: StreamState = {}, action: StreamAction): StreamState => {
     case ActionTypes.EDIT_STREAM:
       return { ...state, [action.payload.id]: action.payload};
     case ActionTypes.FETCH_STREAMS:
-      const newState: StreamState = { ...state };
-      action.payload.forEach(stream => newState[stream.id] = stream);
-      return newState;
+      return { ...state, ...action.payload.reduce((obj, stream) => (obj[stream.id] = stream, obj), {}) };
     case ActionTypes.DELETE_STREAM:
-      return { ...state, [action.payload]: undefined};
+      const { [action.payload]: undefined, ...newState } = state;
+      return newState;
     default:
       return state;
   }

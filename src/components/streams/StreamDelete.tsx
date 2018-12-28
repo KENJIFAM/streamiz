@@ -5,7 +5,7 @@ import history from '../../history';
 const StreamDelete = () => {
   const action = (
     <React.Fragment>
-      <button onClick={() => history.push('/')} className='ui negative button'>Delete</button>
+      <button className='ui negative button'>Delete</button>
       <button className='ui button'>Cancel</button>
     </React.Fragment>
   );
@@ -17,6 +17,7 @@ const StreamDelete = () => {
         title='Delete Stream'
         content='Are you sure you want to delete this stream?'
         action={action}
+        onDismiss={() => history.push('/')} 
       />
     </div>
   );

@@ -8,8 +8,7 @@ import {
   WrappedFieldMetaProps 
 } from 'redux-form';
 
-interface PropsStreamCreate {
-  createStream(formValues: FormData): Promise<void>,
+interface PropsStreamForm {
   onSubmit: (formValues: FormData) => Promise<void>
 }
 
@@ -22,7 +21,7 @@ interface FieldProps {
   label: string
 }
 
-class StreamForm extends React.Component<InjectedFormProps<FormData> & PropsStreamCreate, {}> {
+class StreamForm extends React.Component<InjectedFormProps<FormData> & PropsStreamForm, {}> {
   renderError({ error, touched }: WrappedFieldMetaProps) {
     if (touched && error) {
       return (

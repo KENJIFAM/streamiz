@@ -1,24 +1,24 @@
 import * as React from 'react';
-import { 
-  reduxForm, 
-  Field, 
-  InjectedFormProps, 
-  FormErrors, 
-  WrappedFieldProps, 
-  WrappedFieldMetaProps 
+import {
+  reduxForm,
+  Field,
+  InjectedFormProps,
+  FormErrors,
+  WrappedFieldProps,
+  WrappedFieldMetaProps
 } from 'redux-form';
 
 interface PropsStreamForm {
-  onSubmit: (formValues: FormData) => Promise<void>
+  onSubmit: (formValues: FormData) => Promise<void>;
 }
 
 export interface FormData {
-  title: string,
-  description: string
+  title: string;
+  description: string;
 }
 
 interface FieldProps {
-  label: string
+  label: string;
 }
 
 class StreamForm extends React.Component<InjectedFormProps<FormData> & PropsStreamForm, {}> {
@@ -49,8 +49,8 @@ class StreamForm extends React.Component<InjectedFormProps<FormData> & PropsStre
 
   render() {
     return (
-      <form 
-        onSubmit={this.props.handleSubmit(this.onSubmit)} 
+      <form
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
         className='ui form error'
       >
         <Field name='title' component={this.renderInput} label='Enter Title' />
@@ -70,7 +70,7 @@ const validate = (formValues: FormData): FormErrors<FormData> => {
     errors.description = 'You must enter a description';
   }
   return errors;
-}
+};
 
 export default reduxForm<FormData>({
   form: 'streamForm',

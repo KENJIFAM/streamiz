@@ -7,21 +7,21 @@ import { Stream } from '../../model/Stream';
 import { AppState } from '../../reducers';
 
 interface PropsStreamShow extends RouteComponentProps<MatchProps> {
-  fetchStream(id: string): Promise<void>
+  fetchStream(id: string): Promise<void>;
 }
 
 interface MatchProps {
-  id: string
+  id: string;
 }
 
 interface PropsFromState {
-  stream: Stream
+  stream: Stream;
 }
 
 class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
   videoRef: React.RefObject<HTMLVideoElement>;
   player: flv.Player;
-  
+
   constructor(props: PropsStreamShow & PropsFromState) {
     super(props);
     this.videoRef = React.createRef();
@@ -45,7 +45,7 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
       return;
     }
     console.log(this.player);
-    
+
     const { id }: MatchProps = this.props.match.params;
     this.player = flv.createPlayer({
       type: 'flv',
@@ -70,10 +70,10 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = (state: AppState, ownProps: PropsStreamShow): PropsFromState => {
   return { stream: state.streams[ownProps.match.params.id] };
-}
+};
 
 export default connect(mapStateToProps, { fetchStream })(StreamShow);

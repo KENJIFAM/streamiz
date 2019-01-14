@@ -1,13 +1,13 @@
-import { ActionTypes, AuthAction } from "../actions/types";
+import { ActionTypes, AuthAction } from '../actions/types';
 
 export interface AuthState {
-  isSignedIn: boolean,
-  userId: string
+  isSignedIn: boolean;
+  userId: string;
 }
 
 const INITIAL_STATE: AuthState = {
-  isSignedIn: null,
-  userId: null
+  isSignedIn: undefined,
+  userId: undefined
 };
 
 export default (state: AuthState = INITIAL_STATE, action: AuthAction): AuthState => {
@@ -15,7 +15,7 @@ export default (state: AuthState = INITIAL_STATE, action: AuthAction): AuthState
     case ActionTypes.SIGN_IN:
       return {...state, isSignedIn: true, userId: action.payload};
     case ActionTypes.SIGN_OUT:
-      return {...state, isSignedIn: false, userId: null};
+      return {...state, isSignedIn: false, userId: undefined};
     default:
       return state;
   }

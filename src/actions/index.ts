@@ -1,31 +1,31 @@
 import streams from '../apis/streams';
-import { ThunkDispatch } from "redux-thunk";
+import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../reducers';
 import history from '../history';
 import { FormData } from '../components/streams/StreamForm';
-import { 
-  ActionTypes, 
-  SignInAction, 
-  SignOutAction, 
-  StreamThunkAction, 
-  CreateStreamAction, 
-  FetchStreamsAction, 
+import {
+  ActionTypes,
+  SignInAction,
+  SignOutAction,
+  StreamThunkAction,
+  CreateStreamAction,
+  FetchStreamsAction,
   FetchStreamAction,
   EditStreamAction,
   DeleteStreamAction
-} from "./types";
+} from './types';
 
 export const signIn = (userId: string): SignInAction => {
   return {
     type: ActionTypes.SIGN_IN,
     payload: userId
-  }
+  };
 };
 
 export const signOut = (): SignOutAction => {
   return {
     type: ActionTypes.SIGN_OUT
-  }
+  };
 };
 
 export const createStream = (formValues: FormData): StreamThunkAction<CreateStreamAction> =>

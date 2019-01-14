@@ -9,16 +9,16 @@ import { Stream } from '../../model/Stream';
 import { Link } from 'react-router-dom';
 
 interface PropsStreamDelete extends RouteComponentProps<MatchParams> {
-  fetchStream(id: string): Promise<void>,
-  deleteStream(id: string): Promise<void>
+  fetchStream(id: string): Promise<void>;
+  deleteStream(id: string): Promise<void>;
 }
 
 interface MatchParams {
-  id: string
+  id: string;
 }
 
 interface PropsFromState {
-  stream: Stream
+  stream: Stream;
 }
 
 class StreamDelete extends React.Component<PropsStreamDelete & PropsFromState, {}> {
@@ -64,6 +64,6 @@ class StreamDelete extends React.Component<PropsStreamDelete & PropsFromState, {
 
 const mapStateToProps = (state: AppState, ownProps: PropsStreamDelete): PropsFromState => {
   return { stream: state.streams[ownProps.match.params.id] };
-}
+};
 
 export default connect(mapStateToProps, { fetchStream, deleteStream })(StreamDelete);

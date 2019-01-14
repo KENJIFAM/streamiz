@@ -4,7 +4,7 @@ import { createStream } from '../../actions';
 import StreamForm, { FormData } from './StreamForm';
 
 interface PropsStreamCreate {
-  createStream(formValues: FormData): Promise<void>
+  createStream(formValues: FormData): Promise<void>;
 }
 
 class StreamCreate extends React.Component<PropsStreamCreate, {}> {
@@ -24,4 +24,4 @@ class StreamCreate extends React.Component<PropsStreamCreate, {}> {
   }
 }
 
-export default connect(null, { createStream })(StreamCreate);
+export default connect(undefined, { createStream })(StreamCreate);

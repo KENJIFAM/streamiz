@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 interface PropsModal {
-  title: string,
-  content: string,
-  action: React.ReactNode,
-  onDismiss: () => void
+  title: string;
+  content: string;
+  action: React.ReactNode;
+  onDismiss: () => void;
 }
 
 const Modal: React.FunctionComponent<PropsModal> = (props: PropsModal) => {

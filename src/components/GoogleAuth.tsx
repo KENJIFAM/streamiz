@@ -4,26 +4,26 @@ import { signIn, signOut } from '../actions';
 import { AppState } from '../reducers';
 
 interface GoogleAuthProps {
-  signIn(id: string): void,
-  signOut(): void,
+  signIn(id: string): void;
+  signOut(): void;
 }
 
 interface PropsFromState {
-  isSignedIn: boolean
+  isSignedIn: boolean;
 }
 
 interface Auth {
   isSignedIn: {
     get(): boolean,
     listen(done: (isSignedIn: boolean) => void): void
-  },
-  signIn(): void,
-  signOut(): void,
+  };
+  signIn(): void;
+  signOut(): void;
   currentUser: {
     get(): {
       getId(): string
     }
-  }
+  };
 }
 
 class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
@@ -63,7 +63,7 @@ class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
 
   renderAuthButton() {
     if (this.props.isSignedIn === null) {
-      return null;
+      return undefined;
     } else if (this.props.isSignedIn) {
       return (
         <button className='ui red google button' onClick={this.onSignOutClick}>

@@ -1,20 +1,27 @@
 import express from 'express';
-import bodyParser from "body-parser";
-import dotenv from "dotenv";
-import path from "path";
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import path from 'path';
+import StreamsController from './controllers/StreamsController';
 
-dotenv.config();
-
-const PORT = process.env.PORT || 8080;
 const app = express();
+
+app.use(cors());
+app.use(helmet());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, '../dist')));
+
+app.use('/api', StreamsController);
 
 app.get('/', (req: express.Request, res: express.Response) => {
   res.sendFile(path.join(__dirname , '../dist/index.html'));
 });
 
+const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
   console.log(`App is running at port ${PORT}`);
 });

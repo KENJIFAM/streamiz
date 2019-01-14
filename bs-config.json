@@ -1,6 +1,0 @@
-{
-  "server": {
-    "baseDir": "./dist"
-  },
-  "port": 3000
-}

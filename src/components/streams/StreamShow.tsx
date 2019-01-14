@@ -44,12 +44,16 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
     if (this.player || !this.props.stream) {
       return;
     }
-    console.log(this.player);
 
     const { id }: MatchProps = this.props.match.params;
+    const FLV_HOST = process.env.FLV_HOST || 'http://localhost:8000';
     this.player = flv.createPlayer({
       type: 'flv',
-      url: `http://localhost:8000/live/${id}.flv`
+      url: `${FLV_HOST}/live/${id}.flv`
+    }, {
+      enableWorker: false,
+      lazyLoadMaxDuration: 3 * 60,
+      seekType: 'range'
     });
     this.player.attachMediaElement(this.videoRef.current);
     this.player.load();

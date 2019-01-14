@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const DotEnv = require('dotenv-webpack');
 
 module.exports = {
   entry: ['webpack/hot/poll?100', './server/server.ts'],
@@ -23,7 +24,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new DotEnv()
   ],
   output: {
     path: path.join(__dirname, 'dist'),

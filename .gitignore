@@ -8,8 +8,12 @@
 
 # production
 /dist/bundle.js
+/dist/server.js
+/dist/main.*
+/dist/*.hot-update.json
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local

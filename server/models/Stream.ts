@@ -1,9 +1,10 @@
 import mongoose, { Document } from 'mongoose';
+import User, { UserModel } from './User';
 
 export interface StreamModel extends Document {
   title: string;
   description: string;
-  userId: string;
+  user: UserModel;
   views: number;
 }
 
@@ -11,7 +12,10 @@ const streamSchema = new mongoose.Schema(
   {
     title: String,
     description: String,
-    userId: String,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
     views: {
       type: Number,
       default: 0
@@ -22,6 +26,17 @@ const streamSchema = new mongoose.Schema(
   }
 );
 
-const Stream = mongoose.model('Stream', streamSchema);
+streamSchema.pre<StreamModel>('remove', async function(next: mongoose.HookNextFunction) {
+  try {
+    let user = await User.findOne(this.user);
+    user.streams.remove(this.id);
+    await user.save();
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+});
+
+const Stream = mongoose.model<StreamModel>('Stream', streamSchema);
 
 export default Stream;

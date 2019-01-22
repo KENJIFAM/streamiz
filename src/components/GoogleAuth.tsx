@@ -34,7 +34,7 @@ class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
     window.gapi.load('client:auth2', () => {
       // @ts-ignore: Property 'gapi' does not exist on type 'Window'
       window.gapi.client.init({
-        clientId: '537222515934-dvrvlq1ip9tf2morkvr878aavbr8t3hl.apps.googleusercontent.com',
+        clientId: process.env.GOOGLE_CLIENTID,
         scope: 'email'
       }).then(() => {
         // @ts-ignore: Property 'gapi' does not exist on type 'Window'

@@ -1,3 +1,5 @@
+const DotEnv = require('dotenv-webpack');
+
 module.exports = {
   entry: './src/index.tsx',
   output: {
@@ -14,5 +16,8 @@ module.exports = {
         loader: 'ts-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new DotEnv()
+  ]
 }

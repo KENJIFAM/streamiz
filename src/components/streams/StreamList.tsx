@@ -38,11 +38,15 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
         {this.renderAdmin(stream)}
         <i className='large middle aligned icon camera' />
         <div className='content'>
-          <Link to={`/streams/${stream._id}`} className='header'>{stream.title}</Link>
+          <Link to={`/streams/${stream._id}`} className='ui small header'><span>{stream.title}</span></Link>
           <div className='description'>{stream.description}</div>
           <div className='extra'>
-            {timeDifferenceForDate(stream.updatedAt)}{' '}
-            {stream.updatedAt !== stream.createdAt ? '(edited)' : ''}
+            <span>
+              {`${stream.views ? stream.views : 0} ${stream.views > 1 ? 'views' : 'view'}`}
+            </span>
+            <span>
+              {`${timeDifferenceForDate(stream.createdAt)} (last seen ${timeDifferenceForDate(stream.updatedAt)})`}
+            </span>
           </div>
         </div>
       </div>

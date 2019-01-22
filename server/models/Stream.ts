@@ -4,13 +4,18 @@ export interface StreamModel extends Document {
   title: string;
   description: string;
   userId: string;
+  views: number;
 }
 
 const streamSchema = new mongoose.Schema(
   {
     title: String,
     description: String,
-    userId: String
+    userId: String,
+    views: {
+      type: Number,
+      default: 0
+    }
   },
   {
     timestamps: true

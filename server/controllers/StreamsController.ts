@@ -6,7 +6,7 @@ const router = express.Router();
 /*****  GET ALL streams from database *****/
 router.get('/streams', async (req, res) => {
   try {
-    const streams = await db.Stream.find({}).sort({ updatedAt: 'desc' });
+    const streams = await db.Stream.find({}).sort({ createdAt: 'desc' });
     return res.status(200).json(streams);
   } catch (err) {
     return res.status(500).send('There was a problem finding streams.');
@@ -16,7 +16,7 @@ router.get('/streams', async (req, res) => {
 /***** GET stream by id *****/
 router.get('/streams/:id', async (req, res) => {
   try {
-    const stream = await db.Stream.findOne({_id: req.params.id});
+    const stream = await db.Stream.findOneAndUpdate({ _id: req.params.id }, { $inc: { views: 1 } }, { new: true });
     return res.status(200).json(stream);
   } catch (err) {
     return res.status(500).send('This stream is not valid!');

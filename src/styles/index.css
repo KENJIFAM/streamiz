@@ -1,3 +1,7 @@
+body {
+  font-family: Roboto, Arial, sans-serif;
+}
+
 .copyBtn {
   float: right;
 }
@@ -12,6 +16,12 @@ abbr[title] {
   margin-bottom: 0;
 }
 
+.streamViews {
+  font-size: 16px;
+  color: #606060;
+  margin-bottom: 0;
+}
+
 .streamTime {
   margin-bottom: 24px;
   color: gray;
@@ -21,4 +31,17 @@ abbr[title] {
 .extra {
   color: gray;
   font-size: 13px;
+}
+
+.extra > span:not(:last-of-type)::after {
+  content: '•';
+  margin: 0 4px;
+}
+
+.extra span {
+  line-height: 18px;
+}
+
+a span {
+  color: black !important;
 }

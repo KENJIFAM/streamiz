@@ -3,6 +3,7 @@ export interface Stream {
   title: string;
   description: string;
   userId: string;
+  views: number;
   createdAt: Date;
   updatedAt: Date;
 }

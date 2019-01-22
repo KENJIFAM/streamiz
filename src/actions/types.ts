@@ -1,6 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { Stream } from '../model/Stream';
+import { User } from '../model/User';
 
 export enum ActionTypes {
   SIGN_IN = 'SIGN_IN',
@@ -14,7 +15,7 @@ export enum ActionTypes {
 
 export interface SignInAction {
   type: ActionTypes.SIGN_IN;
-  payload: string;
+  payload: User;
 }
 
 export interface SignOutAction {

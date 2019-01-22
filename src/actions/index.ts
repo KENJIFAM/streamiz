@@ -15,11 +15,13 @@ import {
   DeleteStreamAction
 } from './types';
 
-export const signIn = (userId: string): SignInAction => {
-  return {
+export const signIn = (userId: string): StreamThunkAction<SignInAction> =>
+async (dispatch: ThunkDispatch<{}, {}, SignInAction>): Promise<void> => {
+  const response = await streams.post('/auth', { userId });
+  dispatch({
     type: ActionTypes.SIGN_IN,
-    payload: userId
-  };
+    payload: response.data
+  });
 };
 
 export const signOut = (): SignOutAction => {
@@ -30,8 +32,8 @@ export const signOut = (): SignOutAction => {
 
 export const createStream = (formValues: FormData): StreamThunkAction<CreateStreamAction> =>
 async (dispatch: ThunkDispatch<{}, {}, CreateStreamAction>, getState: () => AppState): Promise<void> => {
-  const { userId }: { userId: string } = getState().auth;
-  const response = await streams.post('/streams', { ...formValues, userId });
+  const user = getState().auth.user._id;
+  const response = await streams.post('/streams', { ...formValues, user });
   dispatch({
     type: ActionTypes.CREATE_STREAM,
     payload: response.data

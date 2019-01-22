@@ -18,8 +18,7 @@
     "serve": "node dist/server.js",
     "serve:dev": "nodemon dist/server.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"WebpackServer,WebpackClient,RTMP,Node\" -c \"yellow.bold,blue.bold,green.bold,red.bold\" \"npm run build:server\" \"npm run build:client\" \"npm run rtmp:dev\" \"npm run serve:dev\"",
-    "start": "NODE_ENV=production npm run serve",
-    "postinstall": "npm run build",
+    "start": "npm run serve",
     "prepare": "npm run build",
     "deploy": "gcloud app deploy"
   },

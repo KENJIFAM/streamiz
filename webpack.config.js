@@ -1,4 +1,5 @@
 const DotEnv = require('dotenv-webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: './src/index.tsx',
@@ -14,10 +15,17 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader'
+      },
+      {
+        test: /\.css$/,
+        use:  [  'style-loader', MiniCssExtractPlugin.loader, 'css-loader']
       }
     ]
   },
   plugins: [
-    new DotEnv()
+    new DotEnv(),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+    })
   ]
 }

@@ -8,10 +8,9 @@ rtmpserver/node_modules
 /coverage
 
 # production
-/dist/bundle.js
-/dist/server.js
-/dist/main.*
-/dist/*.hot-update.json
+/dist/*.js
+/dist/*.json
+/dist/*.css
 
 # misc
 .env

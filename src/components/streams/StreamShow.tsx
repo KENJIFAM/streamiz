@@ -5,6 +5,7 @@ import { fetchStream } from '../../actions';
 import { RouteComponentProps } from 'react-router';
 import { Stream } from '../../model/Stream';
 import { AppState } from '../../reducers';
+import { copyTextToClipboard, resetCopy } from '../../utils';
 
 interface PropsStreamShow extends RouteComponentProps<MatchProps> {
   fetchStream(id: string): Promise<void>;
@@ -77,10 +78,22 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
 
   renderAdmin = (userId: string) => {
     if (userId === this.props.currentUserId) {
+      const url = `rtmp://${this.RTMP_SERVER}/live/${this.streamKey()}`;
       return (
         <div className='field'>
           <label>Live stream link</label>
-          <input value={`rtmp://${this.RTMP_SERVER}/live/${this.streamKey()}`} readOnly />
+          <div className='ui secondary segment'>
+            <span
+              className='copyBtn'
+              data-tooltip='Copy to clipboard'
+              data-inverted=''
+              onClick={() => copyTextToClipboard(url)}
+              onMouseEnter={() => resetCopy()}
+            >
+              <i className='copy link icon' />
+            </span>
+            <p className='text'>{url}</p>
+          </div>
         </div>
       );
     }

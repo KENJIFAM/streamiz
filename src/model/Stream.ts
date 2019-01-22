@@ -3,4 +3,6 @@ export interface Stream {
   title: string;
   description: string;
   userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

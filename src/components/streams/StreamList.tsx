@@ -4,6 +4,7 @@ import { fetchStreams } from '../../actions';
 import { AppState } from '../../reducers';
 import { Stream } from '../../model/Stream';
 import { Link } from 'react-router-dom';
+import { timeDifferenceForDate } from '../../utils';
 
 interface PropsStreamList {
   fetchStreams(): Promise<void>;
@@ -39,6 +40,10 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
         <div className='content'>
           <Link to={`/streams/${stream._id}`} className='header'>{stream.title}</Link>
           <div className='description'>{stream.description}</div>
+          <div className='extra'>
+            {timeDifferenceForDate(stream.updatedAt)}{' '}
+            {stream.updatedAt !== stream.createdAt ? '(edited)' : ''}
+          </div>
         </div>
       </div>
     ));

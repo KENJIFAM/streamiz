@@ -5,7 +5,7 @@ import { fetchStream } from '../../actions';
 import { RouteComponentProps } from 'react-router';
 import { Stream } from '../../model/Stream';
 import { AppState } from '../../reducers';
-import { copyTextToClipboard, resetCopy } from '../../utils';
+import { copyTextToClipboard, resetCopy, formatedDate } from '../../utils';
 
 interface PropsStreamShow extends RouteComponentProps<MatchProps> {
   fetchStream(id: string): Promise<void>;
@@ -104,12 +104,21 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
       return <div>Loading...</div>;
     }
 
-    const { title, description, userId } = this.props.stream;
+    const { title, description, userId, createdAt, updatedAt } = this.props.stream;
 
     return (
       <div>
         <video ref={this.videoRef} style={{ width: '100%' }} controls />
-        <h1>{title}</h1>
+        <h1 className='streamTitle'>{title}</h1>
+        <p className='streamTime'>
+          Published on <abbr title={formatedDate(createdAt)}>
+            {formatedDate(createdAt, 'short')}
+          </abbr>{' '}
+          {updatedAt !== createdAt
+            ? <abbr title={`Edited on ${formatedDate(updatedAt)}`}>(edited)</abbr>
+            : ''
+          }
+        </p>
         <form className='ui form'>
           <div className='field'>
             <label>Description</label>

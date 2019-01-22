@@ -6,11 +6,16 @@ export interface StreamModel extends Document {
   userId: string;
 }
 
-const streamSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  userId: String
-});
+const streamSchema = new mongoose.Schema(
+  {
+    title: String,
+    description: String,
+    userId: String
+  },
+  {
+    timestamps: true
+  }
+);
 
 const Stream = mongoose.model('Stream', streamSchema);
 

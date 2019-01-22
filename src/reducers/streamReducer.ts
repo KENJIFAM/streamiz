@@ -14,7 +14,7 @@ export default (state: StreamState = {}, action: StreamAction): StreamState => {
     case ActionTypes.EDIT_STREAM:
       return { ...state, [action.payload._id]: action.payload};
     case ActionTypes.FETCH_STREAMS:
-      return { ...state, ...action.payload.reduce((obj, stream) => (obj[stream._id] = stream, obj), {}) };
+      return { ...action.payload.reduce((obj, stream) => (obj[stream._id] = stream, obj), {}) };
     case ActionTypes.DELETE_STREAM:
       const { [action.payload]: undefined, ...newState } = state;
       return newState;

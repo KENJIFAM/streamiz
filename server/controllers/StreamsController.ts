@@ -6,7 +6,7 @@ const router = express.Router();
 /*****  GET ALL streams from database *****/
 router.get('/streams', async (req, res) => {
   try {
-    const streams = await db.Stream.find({});
+    const streams = await db.Stream.find({}).sort({ updatedAt: 'desc' });
     return res.status(200).json(streams);
   } catch (err) {
     return res.status(500).send('There was a problem finding streams.');

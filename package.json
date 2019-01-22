@@ -2,7 +2,11 @@
   "name": "streams",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
+  "private": true,
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
@@ -15,7 +19,9 @@
     "serve:dev": "nodemon dist/server.js",
     "dev": "concurrently -k -p \"[{name}]\" -n \"WebpackServer,WebpackClient,RTMP,Node\" -c \"yellow.bold,blue.bold,green.bold,red.bold\" \"npm run build:server\" \"npm run build:client\" \"npm run rtmp:dev\" \"npm run serve:dev\"",
     "start": "NODE_ENV=production npm run serve",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "prepare": "npm run build",
+    "deploy": "gcloud app deploy"
   },
   "keywords": [],
   "author": "Kenji Fam",

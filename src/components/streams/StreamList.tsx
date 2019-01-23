@@ -5,6 +5,7 @@ import { AppState } from '../../reducers';
 import { Stream } from '../../model/Stream';
 import { Link } from 'react-router-dom';
 import { timeDifferenceForDate } from '../../utils';
+import { User } from '../../model/User';
 
 interface PropsStreamList {
   fetchStreams(): Promise<void>;
@@ -12,7 +13,7 @@ interface PropsStreamList {
 
 interface PropsFromState {
   streams: Stream[];
-  currentUserId: string;
+  currentUser: User;
   isSignedIn: boolean;
 }
 
@@ -22,7 +23,7 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
   }
 
   renderAdmin(stream: Stream) {
-    if (stream.userId === this.props.currentUserId) {
+    if (this.props.currentUser && stream.user.userId === this.props.currentUser.userId) {
       return (
         <div className='right floated content'>
           <Link to={`/streams/edit/${stream._id}`} className='ui button primary'>Edit</Link>
@@ -79,7 +80,7 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
 const mapStateToProps = (state: AppState): PropsFromState => {
   return {
     streams: Object.values(state.streams),
-    currentUserId: state.auth.userId,
+    currentUser: state.auth.user,
     isSignedIn: state.auth.isSignedIn
   };
 };

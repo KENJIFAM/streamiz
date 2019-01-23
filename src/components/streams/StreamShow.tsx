@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router';
 import { Stream } from '../../model/Stream';
 import { AppState } from '../../reducers';
 import { copyTextToClipboard, resetCopy, formatedDate, timeDifferenceForDate } from '../../utils';
+import { User } from '../../model/User';
 
 interface PropsStreamShow extends RouteComponentProps<MatchProps> {
   fetchStream(id: string): Promise<void>;
@@ -17,7 +18,7 @@ interface MatchProps {
 
 interface PropsFromState {
   stream: Stream;
-  currentUserId: string;
+  currentUser: User;
 }
 
 class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
@@ -77,7 +78,7 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
   }
 
   renderAdmin = (userId: string) => {
-    if (userId === this.props.currentUserId) {
+    if (this.props.currentUser && userId === this.props.currentUser.userId) {
       const url = `rtmp://${this.RTMP_SERVER}/live/${this.streamKey()}`;
       return (
         <div className='field'>
@@ -107,9 +108,8 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
     const {
       title,
       description,
-      userId,
+      user,
       createdAt,
-      updatedAt,
       views
     } = this.props.stream;
 
@@ -128,7 +128,7 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
             <label>Description</label>
             <p>{description}</p>
           </div>
-          {this.renderAdmin(userId)}
+          {this.renderAdmin(user.userId)}
         </form>
       </div>
     );
@@ -138,7 +138,7 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
 const mapStateToProps = (state: AppState, ownProps: PropsStreamShow): PropsFromState => {
   return {
     stream: state.streams[ownProps.match.params.id],
-    currentUserId: state.auth.userId
+    currentUser: state.auth.user
   };
 };
 

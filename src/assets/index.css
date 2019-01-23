@@ -28,20 +28,35 @@ abbr[title] {
   font-size: 13px;
 }
 
-.extra {
-  color: gray;
-  font-size: 13px;
+.content .header {
+  margin-bottom: 8px !important;
 }
 
-.extra > span:not(:last-of-type)::after {
+.content .meta {
+  line-height: 18px;
+}
+
+.content .extra {
+  color: gray;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.content .extra > span:not(:last-of-type)::after {
   content: '•';
   margin: 0 4px;
 }
 
-.extra span {
+.content .extra span {
   line-height: 18px;
 }
 
 a span {
   color: black !important;
+}
+
+.image img {
+  height: 80px;
+  width: 140px;
 }

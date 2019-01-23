@@ -5,7 +5,7 @@ export interface User {
   userId: string;
   name?: string;
   avatar?: string;
-  streams?: Stream[];
+  streams?: string[];
   createdAt?: Date;
   updatedAt?: Date;
 }

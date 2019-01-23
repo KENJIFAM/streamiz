@@ -6,6 +6,7 @@ import { Stream } from '../../model/Stream';
 import { Link } from 'react-router-dom';
 import { timeDifferenceForDate } from '../../utils';
 import { User } from '../../model/User';
+const img = require('../../assets/default-avatar.jpg');
 
 interface PropsStreamList {
   fetchStreams(): Promise<void>;
@@ -37,10 +38,14 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
     return this.props.streams.map(stream => (
       <div className='item' key={stream._id}>
         {this.renderAdmin(stream)}
-        <i className='large middle aligned icon camera' />
+        <div className='image'>
+          <img src={stream.user.avatar ? stream.user.avatar : String(img)} />
+        </div>
         <div className='content'>
-          <Link to={`/streams/${stream._id}`} className='ui small header'><span>{stream.title}</span></Link>
-          <div className='description'>{stream.description}</div>
+          <div className='ui small header'>
+            <Link to={`/streams/${stream._id}`}><span>{stream.title}</span></Link>
+          </div>
+          <div className='meta'>{stream.user.name}</div>
           <div className='extra'>
             <span>
               {`${stream.views ? stream.views : 0} ${stream.views > 1 ? 'views' : 'view'}`}

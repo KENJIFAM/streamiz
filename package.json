@@ -60,6 +60,7 @@
     "@types/redux-thunk": "^2.1.0",
     "css-loader": "^2.1.0",
     "dotenv-webpack": "^1.7.0",
+    "file-loader": "^3.0.1",
     "mini-css-extract-plugin": "^0.5.0",
     "node-media-server": "^1.4.12",
     "nodemon": "^1.18.10",

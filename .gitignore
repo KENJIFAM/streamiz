@@ -11,6 +11,7 @@ rtmpserver/node_modules
 /dist/*.js
 /dist/*.json
 /dist/*.css
+/dist/*.jpg
 
 # misc
 .env

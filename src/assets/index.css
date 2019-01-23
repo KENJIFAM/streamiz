@@ -60,3 +60,26 @@ a span {
   height: 80px;
   width: 140px;
 }
+
+.event .label {
+  margin-right: 16px;
+  height: 48px !important;
+  width: 48px !important;
+}
+
+.event .content {
+  margin-left: 0 !important;
+}
+
+.event .content .date {
+  margin: 0 !important;
+  font-size: 13px !important;
+}
+
+.event .content .extra {
+  margin-top: 30px !important;
+}
+
+div.ui.secondary.segment {
+  max-width: 600px;
+}

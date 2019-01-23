@@ -7,6 +7,7 @@ import { Stream } from '../../model/Stream';
 import { AppState } from '../../reducers';
 import { copyTextToClipboard, resetCopy, formatedDate, timeDifferenceForDate } from '../../utils';
 import { User } from '../../model/User';
+const img = require('../../assets/default-avatar.jpg');
 
 interface PropsStreamShow extends RouteComponentProps<MatchProps> {
   fetchStream(id: string): Promise<void>;
@@ -118,18 +119,33 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
         <video ref={this.videoRef} style={{ width: '100%' }} controls />
         <h1 className='streamTitle'>{title}</h1>
         <p className='streamViews'>{`${views ? views : 0} ${views > 1 ? 'views' : 'view'}`}</p>
-        <p className='streamTime'>
-          Published on <abbr title={formatedDate(createdAt)}>
-            {formatedDate(createdAt, 'short')}
-          </abbr>
-        </p>
-        <form className='ui form'>
-          <div className='field'>
-            <label>Description</label>
-            <p>{description}</p>
+        <div className='ui divider'></div>
+        <div className='ui feed'>
+          <div className='event'>
+            <div className='label'>
+              <img src={user.avatar ? user.avatar : String(img)} />
+            </div>
+            <div className='content'>
+              <div className='summary'>
+                {user.name}
+              </div>
+              <div className='date'>
+                Published on <abbr title={formatedDate(createdAt)}>
+                  {formatedDate(createdAt, 'short')}
+                </abbr>
+              </div>
+              <div className='extra'>
+                <form className='ui form'>
+                  <div className='field'>
+                    <label>Description</label>
+                    <p>{description}</p>
+                  </div>
+                  {this.renderAdmin(user.userId)}
+                </form>
+              </div>
+            </div>
           </div>
-          {this.renderAdmin(user.userId)}
-        </form>
+        </div>
       </div>
     );
   }

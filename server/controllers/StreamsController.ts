@@ -25,11 +25,7 @@ router.get('/streams', async (req, res) => {
   try {
     const streams = await db.Stream.find({})
       .sort({ createdAt: 'desc' })
-      .populate('user', {
-        userId: true,
-        name: true,
-        avatar: true
-      });
+      .populate('user', 'userId name avatar -_id');
     return res.status(200).json(streams);
   } catch (err) {
     return res.status(500).send('There was a problem finding streams.');
@@ -44,11 +40,7 @@ router.get('/streams/:id', async (req, res) => {
         { _id: req.params.id },
         { $inc: { views: 1 } },
         { new: true }
-      ).populate('user', {
-        userId: true,
-        name: true,
-        avatar: true
-      });
+      ).populate('user', 'userId name avatar -_id');
     return res.status(200).json(stream);
   } catch (err) {
     return res.status(500).send('This stream is not valid!');
@@ -63,11 +55,7 @@ router.post('/streams', async (req, res) => {
     foundUser.streams.push(stream.id);
     await foundUser.save();
     const foundStream = await db.Stream.findById(stream.id)
-      .populate('user', {
-        userId: true,
-        name: true,
-        avatar: true
-      });
+      .populate('user', 'userId name avatar -_id');
     return res.status(200).json(foundStream);
   } catch (err) {
     return res.status(500).send('Cannot create stream!');
@@ -81,11 +69,7 @@ router.patch('/streams/:id', async (req, res) => {
       {_id: req.params.id},
       { $set: req.body },
       { new: true }
-    ).populate('user', {
-      userId: true,
-      name: true,
-      avatar: true
-    });
+    ).populate('user', 'userId name avatar -_id');
     return res.status(200).json(stream);
   } catch (err) {
     return res.status(500).send('This stream does not exist!');

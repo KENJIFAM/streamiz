@@ -2,9 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
 import { AppState } from '../reducers';
+import { User } from '../model/User';
 
 interface GoogleAuthProps {
-  signIn(id: string): void;
+  signIn(user: User): void;
   signOut(): void;
 }
 
@@ -21,7 +22,8 @@ interface Auth {
   signOut(): void;
   currentUser: {
     get(): {
-      getId(): string
+      getId(): string,
+      getBasicProfile(): any
     }
   };
 }
@@ -47,7 +49,12 @@ class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
 
   onAuthChange = (isSignedIn: boolean): void => {
     if (isSignedIn) {
-      this.props.signIn(this.auth.currentUser.get().getId());
+      const user = {
+        userId: this.auth.currentUser.get().getId(),
+        name: this.auth.currentUser.get().getBasicProfile().getName(),
+        avatar: this.auth.currentUser.get().getBasicProfile().getImageUrl()
+      } as User;
+      this.props.signIn(user);
     } else {
       this.props.signOut();
     }

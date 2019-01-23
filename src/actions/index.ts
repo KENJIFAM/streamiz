@@ -14,10 +14,11 @@ import {
   EditStreamAction,
   DeleteStreamAction
 } from './types';
+import { User } from '../model/User';
 
-export const signIn = (userId: string): StreamThunkAction<SignInAction> =>
+export const signIn = (user: User): StreamThunkAction<SignInAction> =>
 async (dispatch: ThunkDispatch<{}, {}, SignInAction>): Promise<void> => {
-  const response = await streams.post('/auth', { userId });
+  const response = await streams.post('/auth', user);
   dispatch({
     type: ActionTypes.SIGN_IN,
     payload: response.data

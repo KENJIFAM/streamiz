@@ -67,6 +67,8 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
   }
 
   render() {
+    console.log(this.props.currentUser);
+
     return (
       <div>
         <h2>Streams</h2>

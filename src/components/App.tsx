@@ -7,12 +7,13 @@ import StreamDelete from './streams/StreamDelete';
 import StreamShow from './streams/StreamShow';
 import Header from './Header';
 import history from '../history';
+import Footer from './Footer';
 
 const App: React.FunctionComponent = () => {
   return (
     <div className='ui container'>
       <Router history={history}>
-        <div>
+        <div id='app'>
           <Header />
           <Switch>
             <Route path='/' exact component={StreamList} />
@@ -23,6 +24,7 @@ const App: React.FunctionComponent = () => {
           </Switch>
         </div>
       </Router>
+      <Footer />
     </div>
   );
 };

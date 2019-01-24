@@ -26,9 +26,13 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
   renderAdmin(stream: Stream) {
     if (this.props.currentUser && stream.user.userId === this.props.currentUser.userId) {
       return (
-        <div className='right floated content'>
-          <Link to={`/streams/edit/${stream._id}`} className='ui button primary'>Edit</Link>
-          <Link to={`/streams/delete/${stream._id}`} className='ui button negative'>Delete</Link>
+        <div id='admin' className='right floated content'>
+          <Link to={`/streams/edit/${stream._id}`} className='circular ui icon button'>
+            <i className='edit icon'></i>
+          </Link>
+          <Link to={`/streams/delete/${stream._id}`} className='circular ui icon button'>
+            <i className='remove icon'></i>
+          </Link>
         </div>
       );
     }
@@ -63,8 +67,8 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
     if (this.props.isSignedIn) {
       return (
         <div>
-          <Link to='/streams/new' className='ui right floated button primary'>
-            Create Stream
+          <Link to='/streams/new' className='circular ui icon right floated button primary'>
+            <i className='plus icon'></i>
           </Link>
         </div>
       );
@@ -72,13 +76,11 @@ class StreamList extends React.Component<PropsStreamList & PropsFromState, {}> {
   }
 
   render() {
-    console.log(this.props.currentUser);
-
     return (
       <div>
+        {this.renderCreate()}
         <h2>Streams</h2>
         <div className='ui celled list'>{this.renderList()}</div>
-        {this.renderCreate()}
       </div>
     );
   }

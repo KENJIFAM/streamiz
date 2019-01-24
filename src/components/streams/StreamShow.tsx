@@ -7,6 +7,7 @@ import { Stream } from '../../model/Stream';
 import { AppState } from '../../reducers';
 import { copyTextToClipboard, resetCopy, formatedDate, timeDifferenceForDate } from '../../utils';
 import { User } from '../../model/User';
+import { Link } from 'react-router-dom';
 const img = require('../../assets/default-avatar.jpg');
 
 interface PropsStreamShow extends RouteComponentProps<MatchProps> {
@@ -80,6 +81,21 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
 
   renderAdmin = (userId: string) => {
     if (this.props.currentUser && userId === this.props.currentUser.userId) {
+      return (
+        <div id='admin-show' className='right floated content'>
+          <Link to={`/streams/edit/${this.props.stream._id}`} className='circular ui icon button'>
+            <i className='edit icon'></i>
+          </Link>
+          <Link to={`/streams/delete/${this.props.stream._id}`} className='circular ui icon button'>
+            <i className='remove icon'></i>
+          </Link>
+        </div>
+      );
+    }
+  }
+
+  renderLink = (userId: string) => {
+    if (this.props.currentUser && userId === this.props.currentUser.userId) {
       const url = `rtmp://${this.RTMP_SERVER}/live/${this.streamKey()}`;
       return (
         <div className='field'>
@@ -126,6 +142,7 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
               <img src={user.avatar ? user.avatar : String(img)} />
             </div>
             <div className='content'>
+              {this.renderAdmin(user.userId)}
               <div className='summary'>
                 {user.name}
               </div>
@@ -140,7 +157,7 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
                     <label>Description</label>
                     <p>{description}</p>
                   </div>
-                  {this.renderAdmin(user.userId)}
+                  {this.renderLink(user.userId)}
                 </form>
               </div>
             </div>

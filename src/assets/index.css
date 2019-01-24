@@ -145,5 +145,23 @@ div.ui.secondary.segment {
   padding-right: 8px !important;
 }
 
-.google.plus.button {
+#admin-show {
+  float: right;
+}
+
+html {
+  height: 100%;
+}
+
+#root > .ui.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Avoid the IE 10-11 `min-height` bug. */
+}
+#app {
+  flex: 1 0 auto; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+  margin-bottom: 40px;
+}
+#footer {
+  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
 }

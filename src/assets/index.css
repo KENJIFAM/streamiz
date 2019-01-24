@@ -202,4 +202,8 @@ span#date::before {
   #all-streams span {
     display: none;
   }
+
+  #admin {
+    display: none;
+  }
 }

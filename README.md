@@ -18,3 +18,5 @@ Free broadcaster applications:
 - [Open Broadcaster Software](https://obsproject.com/download) (Windows, macOS, Linux)
 - [Streamlabs](https://play.google.com/store/apps/details?id=com.streamlabs) (Android)
 - [Streamlabs: Stream Live](https://itunes.apple.com/us/app/streamlabs-stream-live/id1294578643) (iOS)
+
+![How to Streamiz](/media/demo.gif)

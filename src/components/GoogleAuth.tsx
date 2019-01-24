@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
 import { AppState } from '../reducers';
 import { User } from '../model/User';
+const img = require('../assets/default-avatar.jpg');
 
 interface GoogleAuthProps {
   signIn(user: User): void;
@@ -72,15 +73,32 @@ class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
     if (this.props.isSignedIn === null) {
       return undefined;
     } else if (this.props.isSignedIn) {
+      const avatar = this.props.isSignedIn ? this.auth.currentUser.get().getBasicProfile().getImageUrl() : undefined;
+      const name = this.auth.currentUser.get().getBasicProfile().getName();
       return (
-        <button className='ui red google button' onClick={this.onSignOutClick}>
-          <i className='google icon' />
-          Sign Out
-        </button>
+        <div id='navbar-avatar' className='ui secondary menu'>
+          <div id='navbar-avatar-dropdown' className='ui simple dropdown item'>
+            <img src={avatar ? avatar : String(img)} />
+            <i className='dropdown icon'></i>
+            <div className='menu'>
+              <div className='item'>
+                <img src={avatar ? avatar : String(img)} />
+                <span id='navbar-avatar-name'>{name}</span>
+              </div>
+              <div className='ui divider'></div>
+              <div className='item'>
+                <button className='ui google plus button' onClick={this.onSignOutClick}>
+                  <i className='google icon' />
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       );
     } else {
       return (
-        <button className='ui red google button' onClick={this.onSignInClick}>
+        <button className='ui google plus button' onClick={this.onSignInClick}>
           <i className='google icon' />
           Sign In with Google
         </button>
@@ -89,7 +107,13 @@ class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
   }
 
   render() {
-    return <div>{this.renderAuthButton()}</div>;
+    return (
+      <div className='item'>
+        <div>
+          {this.renderAuthButton()}
+        </div>
+      </div>
+    );
   }
 }
 

@@ -13,7 +13,10 @@ const Header: React.FunctionComponent = () => {
         <div className='right menu'>
           <div className='item'>
             <Link to='/' id='all-streams'>
-              All streams
+              <button className='ui basic icon button'>
+                <i className='list icon'></i>
+              </button>
+              <span>All streams</span>
             </Link>
           </div>
             <GoogleAuth />

@@ -100,7 +100,7 @@ class GoogleAuth extends React.Component<GoogleAuthProps & PropsFromState, {}> {
       return (
         <button className='ui google plus button' onClick={this.onSignInClick}>
           <i className='google icon' />
-          Sign In with Google
+          <span>Login with Google</span>
         </button>
       );
     }

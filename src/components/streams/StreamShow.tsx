@@ -147,9 +147,9 @@ class StreamShow extends React.Component<PropsStreamShow & PropsFromState, {}> {
                 {user.name}
               </div>
               <div className='date'>
-                Published on <abbr title={formatedDate(createdAt)}>
+                <span id='date'><abbr title={formatedDate(createdAt)}>
                   {formatedDate(createdAt, 'short')}
-                </abbr>
+                </abbr></span>
               </div>
               <div className='extra'>
                 <form className='ui form'>

@@ -165,3 +165,41 @@ html {
 #footer {
   flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
 }
+
+.event > .content {
+  min-width: 228px !important;
+}
+
+span#date::before {
+  content: 'Publish on ';
+}
+
+#all-streams button {
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  span#date::before {
+    content: '';
+  }
+
+  button.google {
+    padding: 11px !important;
+  }
+
+  button.google span {
+    display: none;
+  }
+
+  i.google {
+    margin: 0 !important;
+  }
+
+  #all-streams button {
+    display: inline;
+  }
+
+  #all-streams span {
+    display: none;
+  }
+}

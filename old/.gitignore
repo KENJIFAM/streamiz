@@ -1,16 +1,17 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-*/node_modules
-*/dist
-*/build
-*/package-lock.json
+node_modules
+rtmpserver/node_modules
 
 # testing
 /coverage
 
 # production
-data
+/dist/*.js
+/dist/*.json
+/dist/*.css
+/dist/*.jpg
 
 # misc
 .env

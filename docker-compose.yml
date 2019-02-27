@@ -13,6 +13,7 @@ services:
       context: ./nginx
     ports:
       - '8080:80'
+      - '1935:1935'
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -32,6 +33,4 @@ services:
       context: ./rtmpserver
     volumes:
       - /app/node_modules
-      - ./rtmpserver:/app
-    ports:
-      - '1935:1935'
+      - ./rtmpserver:/app      

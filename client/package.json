@@ -7,14 +7,22 @@
     "@types/node": "11.11.7",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.3",
+    "axios": "^0.18.0",
+    "flv.js": "^1.5.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-form": "^8.1.0",
+    "redux-thunk": "^2.3.0",
     "typescript": "3.3.4000"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "build": "react-scripts build && npm run tslint",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -26,5 +34,13 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@types/react-redux": "^7.0.5",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/redux": "^3.6.0",
+    "@types/redux-form": "^8.1.1",
+    "@types/redux-thunk": "^2.1.0",
+    "tslint": "^5.14.0"
+  }
 }

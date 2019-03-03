@@ -1,4 +1,4 @@
-# Streamiz
+# Streamiz (Original)
 
 This is an app that allows users to create a live stream video based on a rtmp server and flv player.
 

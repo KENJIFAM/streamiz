@@ -1,14 +1,22 @@
-# Streamiz
+# Streamiz (Version without Docker)
+
+https://github.com/KENJIFAM/streams/tree/original
+
+# Streamiz (Version with Docker)
 
 This is an app that allows users to create a live stream video based on a rtmp server and flv player.
 
-Tech stacks: TypeScript, React, Redux, Semantic UI, Webpack, Node.js, Express, MongoDB, Google OAuth 2, Google Compute Engine (Linux VPS), Google App Engine
+Tech stacks: TypeScript, React, Redux, Semantic UI, Webpack, Node.js, Express, MongoDB, Google OAuth 2, Docker, Google Compute Engine (Linux VPS)
 
-# Demo
+## Demo
 
 Feel free to try and share: https://streamiz.kenjifam.fi
 
-# How to use
+## App architecture
+
+![App architecture](media/app_architecture.png)
+
+## How to use
 
 Login with Google account, create a new stream.
 

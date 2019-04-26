@@ -51,12 +51,15 @@ router.get('/streams/:id', async (req, res) => {
 router.post('/streams', async (req, res) => {
   try {
     const foundUser = await db.User.findById(req.body.user);
-    const stream = await db.Stream.create(req.body);
-    foundUser.streams.push(stream.id);
-    await foundUser.save();
-    const foundStream = await db.Stream.findById(stream.id)
-      .populate('user', 'userId name avatar -_id');
-    return res.status(200).json(foundStream);
+    if (foundUser) {
+      const stream = await db.Stream.create(req.body);
+      foundUser.streams.push(stream.id);
+      await foundUser.save();
+      const foundStream = await db.Stream.findById(stream.id)
+        .populate('user', 'userId name avatar -_id');
+      return res.status(200).json(foundStream);
+    }
+    return res.status(500).send('User not found!');
   } catch (err) {
     return res.status(500).send('Cannot create stream!');
   }
@@ -80,10 +83,13 @@ router.patch('/streams/:id', async (req, res) => {
 router.delete('/streams/:id', async (req, res) => {
   try {
     const stream = await db.Stream.findById(req.params.id);
-    await stream.remove();
-    return res.status(200).json(stream);
-  } catch (err) {
+    if (stream) {
+      await stream.remove();
+      return res.status(200).json(stream);
+    }
     return res.status(500).send('This stream does not exist!');
+  } catch (err) {
+    return res.status(500).send('Error!');
   }
 });
 
